@@ -266,7 +266,38 @@ route::post('contact_us',[mailcontroller::class , 'contact_us_data'])->name('con
 // U => update     * get - put
 // D => delete     * delete
 
-Route::get('posts' , [postcontroller::class , 'index'])->name('posts.index');
+Route::get('posts/trash' , [postcontroller::class , 'trash'])->name('posts.trash');
 
-Route::get('posts/{id}' , [postcontroller::class , 'show'])->name('posts.show');
+Route::get('posts/{id}/restore' , [postcontroller::class , 'restore'])->name('posts.restore');
+
+Route::get('posts/{id}/forcedelete' , [postcontroller::class , 'forcedelete'])->name('posts.forcedelete');
+
+//forcedelete = حذف بشكل نهائي
+Route::get('posts/restore-all' , [postcontroller::class , 'restore_all'])->name('posts.restore_all');
+
+Route::get('posts/delete-all' , [postcontroller::class , 'delete_all'])->name('posts.delete_all');
+
+
+
+
+// id= الاولوية للروابط الثابتة وليس المتغيرة مثل قيمة
+
+route::resource('posts',postcontroller::class);
+
+//php artisan make:controller pocontroller -r = بجيب عناصر الcrud
+
+// Route::get('posts/create' , [postcontroller::class , 'create'])->name('posts.create');
+// Route::post('posts/store' , [postcontroller::class , 'store'])->name('posts.store');
+
+// Route::get('posts' , [postcontroller::class , 'index'])->name('posts.index');
+
+// Route::get('posts/{id}' , [postcontroller::class , 'show'])->name('posts.show');
+
+// Route::delete('posts/{id}' , [postcontroller::class , 'destroy'])->name('posts.destroy');
+
+// Route::get('posts/{id}/edit' , [postcontroller::class , 'edit'])->name('posts.edit');
+// Route::put('posts/{id}/update' , [postcontroller::class , 'update'])->name('posts.update');
+
+// make:migration add_col_name_to_table_name_table -> لاضافة عمود في جدول
+
 
