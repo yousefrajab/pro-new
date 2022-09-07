@@ -8,6 +8,7 @@ use App\Http\Controllers\customercontroller;
 use App\Http\Controllers\formscontroller;
 use App\Http\Controllers\mailcontroller;
 use App\Http\Controllers\postcontroller;
+use App\Http\Controllers\Realtioncontroller;
 use App\Http\Controllers\site10controller;
 use App\Http\Controllers\site1controller;
 use App\Http\Controllers\site2controller;
@@ -293,11 +294,19 @@ route::resource('posts',postcontroller::class);
 
 // Route::get('posts/{id}' , [postcontroller::class , 'show'])->name('posts.show');
 
-// Route::delete('posts/{id}' , [postcontroller::class , 'destroy'])->name('posts.destroy');
+// Route::delete('posts/{id}' , [postcontroller::class , 'destroy'])->name('posts.destroy');vone_to_one
 
 // Route::get('posts/{id}/edit' , [postcontroller::class , 'edit'])->name('posts.edit');
 // Route::put('posts/{id}/update' , [postcontroller::class , 'update'])->name('posts.update');
 
 // make:migration add_col_name_to_table_name_table -> لاضافة عمود في جدول
 
+//realtionship routes
 
+route::get('one-to-one' , [Realtioncontroller::class , 'one_to_one']);
+
+route::get('my-posts/{id}' , [Realtioncontroller::class , 'one_to_many'])->name('my-posts');
+route::post('one_to_many' , [Realtioncontroller::class , 'one_to_many_data'])->name('one_to_many_data');
+
+route::get('many_to_many' , [Realtioncontroller::class , 'many_to_many'])->name('many_to_many');
+route::post('many_to_many' , [Realtioncontroller::class , 'many_to_many_data'])->name('many_to_many_data');
